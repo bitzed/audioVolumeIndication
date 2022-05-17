@@ -11,6 +11,7 @@
  * @param  {string} codec - The {@link https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/clientconfig.html#codec| client codec} used by the browser.
  */
 var client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8"});
+client.setParamter("AUDIO_VOLUME_INDICATION_INTERVAL", 500);
 //createClientのconfigで書くと失敗するため、setProxyServer/setTurnServerメソッドをclient.joinより前に別途コールする記載に変更しています
 //client.setProxyServer("nawsuonags.net");
 /* client.setTurnServer({
@@ -115,7 +116,7 @@ async function join() {
     client.join(options.appid, options.channel, options.token || null, options.uid || null),
     // Create tracks to the local microphone and camera.
     AgoraRTC.createMicrophoneAudioTrack(),
-    AgoraRTC.createCameraVideoTrack({encoderConfig:{width:500,height:500,framerate:15}})
+    AgoraRTC.createCameraVideoTrack({encoderConfig:{width:1280,height:720,framerate:30}})
   ]);
 
   // Play the local video track to the local browser and update the UI with the user ID.
@@ -179,7 +180,6 @@ async function subscribe(user, mediaType) {
     user.audioTrack.play();
 
   client.enableAudioVolumeIndicator();
-  AgoraRTC.setParamter("AUDIO_VOLUME_INDICATION_INTERVAL", 500);
   }
 }
 
