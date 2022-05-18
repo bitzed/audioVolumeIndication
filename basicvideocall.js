@@ -11,7 +11,7 @@
  * @param  {string} codec - The {@link https://docs.agora.io/en/Voice/API%20Reference/web_ng/interfaces/clientconfig.html#codec| client codec} used by the browser.
  */
 var client = AgoraRTC.createClient({ mode: "rtc", codec: "vp8"});
-client.setParamter("AUDIO_VOLUME_INDICATION_INTERVAL", 500);
+AgoraRTC.setParameter("AUDIO_VOLUME_INDICATION_INTERVAL", 200);
 //createClientのconfigで書くと失敗するため、setProxyServer/setTurnServerメソッドをclient.joinより前に別途コールする記載に変更しています
 //client.setProxyServer("nawsuonags.net");
 /* client.setTurnServer({
